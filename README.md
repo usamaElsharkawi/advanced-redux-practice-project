@@ -100,6 +100,17 @@ If you put the `async` keyword on the *outer* Thunk function: `export const send
 - Redux intercepts it, sees a Promise instead of a plain Thunk function, and crashes the app because it doesn't know what to do with a Promise.
 - **The Fix:** Keep the outer function synchronous. Only put `async` on the *inner* function that gets returned to Redux.
 
+### 5. The Senior Playbook for HTTP Requests in Redux
+When a senior product engineer makes an API call in Redux, they approach it in **4 distinct phases**:
+
+1. **The Planning Phase (Data & UI Architecture):** Decide who is doing the math (Smart vs. Dumb backend). Decide where the UI feedback should live (local component state vs. global Redux UI slice).
+2. **The Redux Foundation (Slices):** Create the pure state slices FIRST (`cart-slice.js` for data, `ui-slice.js` for loading/error states). No `async` code goes here.
+3. **The Action Creator / Thunk (The Orchestrator):** Write the Thunk to handle the side-effect. It follows a strict 3-step timeline:
+    - *Before:* Dispatch a "Pending" UI notification.
+    - *Execution:* `await fetch()`, check `!response.ok`, and parse JSON.
+    - *After:* Dispatch the pure Redux action to update the data, then dispatch the "Success" or "Error" UI notification based on the `try/catch` result.
+4. **The React Integration (The Trigger):** Finally, use `useSelector` and `useDispatch` in a thin React component to just trigger the Thunk via `useEffect` or an `onClick` event.
+
 ---
 
 ## 💻 How to Clone and Run
