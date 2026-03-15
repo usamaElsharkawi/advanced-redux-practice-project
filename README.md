@@ -1,6 +1,10 @@
 # Advanced Redux & Product Engineering Concepts
 
-This repository serves as a practice project and a personal knowledge base for learning **Advanced Redux** and modern **Senior Product Engineering** principles.
+> **Course Project:** This project is part of the ["React - The Complete Guide (incl. Next.js, Redux)"](https://www.udemy.com/course/react-the-complete-guide-incl-redux/) course on Udemy.
+> 
+> **Acknowledgments:** A special thanks to the **Google Antigravity agents**, who acted as a senior instructor guiding this learning journey. Additionally, a special thanks to **Code Wiki**, a separate tool used to explore the repositories of React and Redux to deeply understand their internals, mental models, and industry best practices.
+
+This repository serves as a practice full-stack application and a personal knowledge base for learning **Advanced Redux**, handling asynchronous side effects (Thunks), and applying modern **Senior Product Engineering** principles to build robust web apps.
 
 ## 🧠 Core Engineering Mental Models
 
@@ -95,3 +99,32 @@ If you put the `async` keyword on the *outer* Thunk function: `export const send
 - JavaScript automatically returns a **Promise Object** instead of a regular function.
 - Redux intercepts it, sees a Promise instead of a plain Thunk function, and crashes the app because it doesn't know what to do with a Promise.
 - **The Fix:** Keep the outer function synchronous. Only put `async` on the *inner* function that gets returned to Redux.
+
+---
+
+## 💻 How to Clone and Run
+
+If you would like to run this application locally to test the cart functionality and Redux state:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/usamaElsharkawi/advanced-redux-practice-project.git
+   ```
+
+2. **Navigate into the project directory:**
+   ```bash
+   cd advanced-redux-practice-project
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm start
+   ```
+
+5. **View the app:**
+   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
